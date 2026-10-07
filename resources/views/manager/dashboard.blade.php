@@ -208,21 +208,21 @@
     <div class="dashboard-content">
         <div class="dashboard-grid">
             <div class="dashboard-card">
-                <h3>Total Transaksi</h3>
+                <h3>Total Transactions</h3>
                 <div class="value">{{ $transactionCount }}</div>
-                <p>Jumlah Transaksi Saat Ini</p>
+                <p>Current Transaction Count</p>
             </div>
 
             <div class="dashboard-card">
-                <h3>Total Pendapatan</h3>
+                <h3>Total Revenue</h3>
                 <div class="value">Rp {{ number_format($totalIncome, 0, ',', '.') }}</div>
-                <p>Total Pendapatan Laundry</p>
+                <p>Total Laundry Revenue</p>
             </div>
 
             <div class="dashboard-card">
-                <h3>Total Layanan</h3>
+                <h3>Total Services</h3>
                 <div class="value">{{ $laundryCount }}</div>
-                <p>Jumlah Layanan Tersedia</p>
+                <p>Available Service Count</p>
             </div>
         </div>
 
@@ -233,10 +233,10 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Tanggal</th>
-                            <th>Nama Pelanggan</th>
-                            <th>Layanan</th>
-                            <th>Total Harga</th>
+                            <th>Date</th>
+                            <th>Customer Name</th>
+                            <th>Service</th>
+                            <th>Total Price</th>
                         </tr>
                     </thead>
                     <tbody>

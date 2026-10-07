@@ -22,10 +22,10 @@ class PresensiController extends Controller
         $nama = Auth::user()->name;
         $now = Carbon::now();
 
-        // Cek waktu presensi
+        // Check the attendance time
         $isWithinWorkHours = $this->isWorkingHours();
 
-        // Cek apakah user sudah presensi hari ini selama jam kerja
+        // Check whether the user has already recorded attendance today during work hours
         $sudahPresensi = Presensi::where('nama', $nama)
             ->whereDate('created_at', Carbon::today())
             ->whereTime('created_at', '>=', '08:00:00')
@@ -42,15 +42,15 @@ class PresensiController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi waktu kerja
+        // Validate working hours
         if (!$this->isWorkingHours()) {
-            return redirect()->back()->with('error', 'Presensi hanya dapat dilakukan pada jam 08:00 - 19:00');
+            return redirect()->back()->with('error', 'Attendance can only be recorded between 8:00 AM and 7:00 PM.');
         }
 
-        // Ambil nama user yang login
+        // Get the logged-in user's name
         $nama = Auth::user()->name;
 
-        // Cek apakah sudah presensi hari ini dalam jam kerja
+        // Check whether attendance has already been recorded today during work hours
         $sudahPresensi = Presensi::where('nama', $nama)
             ->whereDate('created_at', Carbon::today())
             ->whereTime('created_at', '>=', '08:00:00')
@@ -58,11 +58,11 @@ class PresensiController extends Controller
             ->exists();
 
         if ($sudahPresensi) {
-            return redirect()->back()->with('error', 'Anda sudah melakukan presensi hari ini!');
+            return redirect()->back()->with('error', 'You have already recorded attendance today!');
         }
 
         try {
-            // Validasi input
+            // Validate the input
             $request->validate([
                 'nama' => 'required|string|max:255',
                 'kehadiran' => 'required|string',
@@ -70,19 +70,19 @@ class PresensiController extends Controller
                 'upload' => 'nullable|file|mimes:jpg,png,jpeg,pdf|max:2048',
             ]);
 
-            // cek lagi waktu kerja sebelum simpan input pegawai
+            // Check working hours again before saving the staff input
             if (!$this->isWorkingHours()) {
-                return redirect()->back()->with('error', 'Presensi hanya dapat dilakukan pada jam 08:00 - 19:00');
+                return redirect()->back()->with('error', 'Attendance can only be recorded between 8:00 AM and 7:00 PM.');
             }
 
-            // Jika ada file upload, simpan file dan dapatkan path-nya
+            // If a file was uploaded, save it and get its path
             if ($request->hasFile('upload')) {
                 $uploadPath = $request->file('upload')->store('uploads', 'public');
             } else {
                 $uploadPath = null;
             }
 
-            // Simpan data ke dalam tabel presensis
+            // Save the data to the attendance table
             Presensi::create([
                 'nama_pegawai' => $request->nama,
                 'kehadiran' => $request->kehadiran,
@@ -90,20 +90,20 @@ class PresensiController extends Controller
                 'upload' => $uploadPath,
             ]);
 
-            // Ambil pengguna yang sedang login
+            // Get the currently logged-in user
             $user = Auth::user();
 
-            // Cek peran pengguna
+            // Check the user's role
             if ($user->name === 'manager') {
                 return redirect()->intended(route('manager.dashboard'))
-                    ->with('success', 'Presensi berhasil disimpan');
+                    ->with('success', 'Attendance saved successfully.');
             } elseif (in_array($user->name, ['Ferdy', 'Mado', 'Rio', 'Juliano'])) {
                 return redirect()->intended(route('pegawai.dashboard'))
-                    ->with('success', 'Presensi berhasil disimpan');
+                    ->with('success', 'Attendance saved successfully.');
             }
         } catch (\Exception $e) {
             return redirect()->back()
-                ->with('error', 'Terjadi kesalahan: ' . $e->getMessage())
+                ->with('error', 'An error occurred: ' . $e->getMessage())
                 ->withInput();
         }
     }
@@ -175,52 +175,52 @@ class PresensiController extends Controller
     //         }
     //     }
     // }
-    // Menampilkan data presensi dalam bentuk tabel di dashboard Pegawai
+    // Display attendance data in a table on the staff dashboard
     public function viewpresensi()
     {
-        $presensis = Presensi::orderBy('created_at', 'desc')->paginate(5); // Mengambil semua data presensi dari database
+        $presensis = Presensi::orderBy('created_at', 'desc')->paginate(5); // Retrieve all attendance data from the database
         return view('pegawai.viewpresensi', compact('presensis'));
     }
-    // Menampilkan data presensi dalam bentuk tabel di dashboard Manager
+    // Display attendance data in a table on the manager dashboard
     public function viewpresensiManager()
     {
-        $presensis = Presensi::paginate(5); // Mengambil semua data presensi dari database
+        $presensis = Presensi::paginate(5); // Retrieve all attendance data from the database
         return view('manager.viewpresensi', compact('presensis'));
     }
 
     public function showFile($id)
     {
-        // Cari data presensi berdasarkan ID
+        // Find attendance data by ID
         $presensi = Presensi::find($id);
 
         // Jika data presensi ditemukan dan ada file yang diupload
         if ($presensi && $presensi->upload) {
-            // Buat path lengkap ke file
+            // Build the full file path
             $filePath = storage_path('app/public/' . $presensi->upload);
 
-            // Periksa apakah file ada di server
+            // Check whether the file exists on the server
             if (file_exists($filePath)) {
-                // Mengembalikan file ke browser untuk ditampilkan atau didownload
+                // Return the file to the browser for viewing or download
                 return response()->file($filePath);
             } else {
-                return redirect()->back()->with('error', 'File tidak ditemukan.');
+                return redirect()->back()->with('error', 'File not found.');
             }
         } else {
-            return redirect()->back()->with('error', 'Presensi atau file tidak ditemukan.');
+            return redirect()->back()->with('error', 'Attendance record or file not found.');
         }
     }
 
-    // Menampilkan form edit presensi
+    // Display the attendance edit form
     public function editpresensi($id)
     {
         $presensi = Presensi::findOrFail($id);
         return view('manager.editpresensi', compact('presensi'));
     }
 
-    // Memperbarui data presensi di database
+    // Update attendance data in the database
     public function update(Request $request, $id)
     {
-        // Validasi input
+        // Validate the input
         $request->validate([
             'nama' => 'required|string|max:255',
             'kehadiran' => 'required|string',
@@ -230,14 +230,14 @@ class PresensiController extends Controller
 
         $presensi = Presensi::findOrFail($id);
 
-        // Jika ada file upload, simpan file dan dapatkan path-nya
+        // If a file was uploaded, save it and get its path
         if ($request->hasFile('upload')) {
             $uploadPath = $request->file('upload')->store('uploads', 'public');
         } else {
             $uploadPath = $presensi->upload; // Tetap gunakan file lama jika tidak ada yang diupload
         }
 
-        // Perbarui data presensi di dalam tabel presensis
+        // Update attendance data in the attendance table
         $presensi->update([
             'nama_pegawai' => $request->nama,
             'kehadiran' => $request->kehadiran,
@@ -245,19 +245,19 @@ class PresensiController extends Controller
             'upload' => $uploadPath,
         ]);
 
-        // Redirect dengan pesan sukses
-        return redirect()->route('manager.viewpresensi')->with('success', 'Presensi berhasil diperbarui.');
+        // Redirect with a success message
+        return redirect()->route('manager.viewpresensi')->with('success', 'Attendance updated successfully.');
     }
 
-    // Menghapus data presensi dari database
+    // Delete attendance data from the database
     public function destroy($id)
     {
         $presensi = Presensi::findOrFail($id);
 
-        // Hapus data presensi
+        // Delete the attendance record
         $presensi->delete();
 
-        // Redirect dengan pesan sukses
-        return redirect()->route('manager.viewpresensi')->with('success', 'Presensi berhasil dihapus.');
+        // Redirect with a success message
+        return redirect()->route('manager.viewpresensi')->with('success', 'Attendance deleted successfully.');
     }
 }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Layanan Laundry</title>
+    <title>Edit Laundry Service</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -124,46 +124,46 @@
 <body>
     <div class="dashboard-content">
         <div class="container">
-            <h2>Edit Jenis dan Tarif Layanan Laundry</h2>
+            <h2>Edit Laundry Service Type and Rate</h2>
             <form action="{{ route('manager.updatelayanan', $laundry->id) }}" method="POST">
                 @csrf
                 @method('PUT')
 
                 <div class="form-group">
-                    <label>Jenis Laundry:</label>
+                    <label>Laundry Type:</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" id="kiloan" name="jenis_laundry" value="kiloan"
                             {{ $laundry->jenis_laundry == 'kiloan' ? 'checked' : '' }} required>
-                        <label class="form-check-label" for="kiloan">Kiloan</label>
+                        <label class="form-check-label" for="kiloan">By Weight</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" id="satuan" name="jenis_laundry" value="satuan"
                             {{ $laundry->jenis_laundry == 'satuan' ? 'checked' : '' }} required>
-                        <label class="form-check-label" for="satuan">Satuan</label>
+                        <label class="form-check-label" for="satuan">By Item</label>
                     </div>
                 </div>
 
-                <label for="jenis_layanan">Jenis Layanan:</label>
+                <label for="jenis_layanan">Service Type:</label>
                 <input type="text" id="jenis_layanan" name="jenis_layanan" value="{{ $laundry->jenis_layanan }}" required>
 
                 <div>
-                    <label for="durasi_layanan">Durasi Layanan:</label>
+                    <label for="durasi_layanan">Turnaround Time:</label>
                     <select id="durasi_layanan" name="durasi_layanan" required>
                         <option value="Express" {{ $laundry->durasi_layanan == 'Express' ? 'selected' : '' }}>Express</option>
-                        <option value="Kilat" {{ $laundry->durasi_layanan == 'Kilat' ? 'selected' : '' }}>Kilat</option>
+                        <option value="Kilat" {{ $laundry->durasi_layanan == 'Kilat' ? 'selected' : '' }}>Fast</option>
                         <option value="Reguler" {{ $laundry->durasi_layanan == 'Reguler' ? 'selected' : '' }}>Reguler</option>
                     </select>
                 </div>
 
-                <label for="tarif_layanan">Tarif Layanan:</label>
+                <label for="tarif_layanan">Service Rate:</label>
                 <input type="number" id="tarif_layanan" name="tarif_layanan" value="{{ $laundry->tarif_layanan }}" required>
 
-                <label for="keterangan">Keterangan:</label>
+                <label for="keterangan">Notes:</label>
                 <textarea id="keterangan" name="keterangan" rows="4">{{ $laundry->keterangan }}</textarea>
 
                 <div class="form-group d-flex">
-                    <button type="button" class="btn btn-batal" onclick="window.location.href='{{ route('manager.viewlayanan') }}'">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-batal" onclick="window.location.href='{{ route('manager.viewlayanan') }}'">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
         </div>

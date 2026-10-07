@@ -15,7 +15,7 @@ class ManagerController extends Controller
         $transactions = Transaction::with(['pelanggan', 'laundry'])->get();
         $totalIncome = $transactions->sum('total_harga');
         $transactionCount = $transactions->count();
-        $laundryCount = Laundry::count(); // Hitung jumlah layanan
+        $laundryCount = Laundry::count(); // Count the services
 
         return view('manager.dashboard', [
             'transactions' => $transactions,
@@ -28,7 +28,7 @@ class ManagerController extends Controller
 
     public function inputdata()
     {
-        // Ambil data jenis_layanan, nama_layanan, dan durasi_layanan dari tabel laundries
+        // Get service type, service name, and turnaround time from the laundries table
         $laundries = Laundry::all();
         return view('manager.inputdata', compact('laundries'));
     }
@@ -45,10 +45,10 @@ class ManagerController extends Controller
             'metodePembayaran' => 'required|string',
         ]);
 
-        // Pecah layanan menjadi jenis layanan dan durasi layanan
+        // Split the service into service type and turnaround time
         [$jenisLayanan, $durasiLayanan] = explode(' - ', $request->layanan);
 
-        // Buat atau ambil pelanggan berdasarkan nama
+        // Create or retrieve the customer by name
         $pelanggan = Pelanggan::updateOrCreate(
             ['nama' => $request->namaPelanggan],
             [
@@ -57,7 +57,7 @@ class ManagerController extends Controller
             ]
         );
 
-        // Ambil laundry yang sesuai atau buat entri baru
+        // Retrieve the matching laundry service or create a new entry
         $laundry = Laundry::updateOrCreate(
             [
                 'jenis_layanan' => $jenisLayanan,
@@ -68,7 +68,7 @@ class ManagerController extends Controller
         // Hitung total harga
         $totalHarga = $laundry->tarif_layanan * $request->berat;
 
-        // Simpan transaksi
+        // Save the transaction
         Transaction::create([
             'tanggal_masuk' => $request->tanggalMasuk,
             'pelanggan_id' => $pelanggan->id,
@@ -78,7 +78,7 @@ class ManagerController extends Controller
             'total_harga' => $totalHarga,
         ]);
 
-        return redirect()->route('manager.dashboard')->with('success', 'Transaksi berhasil disimpan.');
+        return redirect()->route('manager.dashboard')->with('success', 'Transaction saved successfully.');
     }
 
 
@@ -110,10 +110,10 @@ class ManagerController extends Controller
 
         $transaction = Transaction::findOrFail($id);
 
-        // Pecah layanan menjadi jenis layanan dan durasi layanan
+        // Split the service into service type and turnaround time
         [$jenisLayanan, $durasiLayanan] = explode(' - ', $request->layanan);
 
-        // Update pelanggan
+        // Update the customer
         $pelanggan = Pelanggan::updateOrCreate(
             ['nama' => $request->namaPelanggan],
             [
@@ -130,7 +130,7 @@ class ManagerController extends Controller
         // Hitung ulang total harga
         $totalHarga = $laundry->tarif_layanan * $request->berat;
 
-        // Update transaksi
+        // Update the transaction
         $transaction->update([
             'tanggal_masuk' => $request->tanggalMasuk,
             'pelanggan_id' => $pelanggan->id,
@@ -140,7 +140,7 @@ class ManagerController extends Controller
             'total_harga' => $totalHarga,
         ]);
 
-        return redirect()->route('manager.viewdata')->with('success', 'Transaksi berhasil diperbarui');
+        return redirect()->route('manager.viewdata')->with('success', 'Transaction updated successfully.');
     }
 
     public function delete($id)

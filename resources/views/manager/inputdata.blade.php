@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Transaksi Laundry</title>
+    <title>Laundry Transaction Form</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -183,26 +183,26 @@
             <form action="{{ route('pegawai.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="tanggalMasuk">Tanggal Masuk:</label>
+                    <label for="tanggalMasuk">Date Received:</label>
                     <input type="date" id="tanggalMasuk" name="tanggalMasuk" required>
                 </div>
                 <div class="form-group">
-                    <label for="namaPelanggan">Nama Pelanggan:</label>
-                    <input type="text" id="namaPelanggan" name="namaPelanggan" placeholder="Masukkan nama pelanggan" required>
+                    <label for="namaPelanggan">Customer Name:</label>
+                    <input type="text" id="namaPelanggan" name="namaPelanggan" placeholder="Enter customer name" required>
                 </div>
                 <div class="form-group">
-                    <label for="noTelp">No. Telp:</label>
-                    <input type="text" id="noTelp" name="noTelp" placeholder="Masukkan nomor telepon pelanggan" required>
+                    <label for="noTelp">Phone No.:</label>
+                    <input type="text" id="noTelp" name="noTelp" placeholder="Enter customer phone number" required>
                 </div>
                 <div class="form-group">
-                    <label for="alamat">Alamat:</label>
-                    <textarea id="alamat" name="alamat" placeholder="Masukkan alamat pelanggan" rows="3" required></textarea>
+                    <label for="alamat">Address:</label>
+                    <textarea id="alamat" name="alamat" placeholder="Enter customer address" rows="3" required></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="layanan">Layanan Laundry :</label>
+                    <label for="layanan">Laundry Service:</label>
                     <select id="layanan" name="layanan" required>
-                        <option value="" disabled selected>Pilih layanan</option>
+                        <option value="" disabled selected>Select a service</option>
                         @foreach($laundries as $laundry)
                             <option value="{{ $laundry->jenis_layanan }} - {{ $laundry->durasi_layanan }}">
                                 {{ $laundry->jenis_layanan }} - {{ $laundry->durasi_layanan }}
@@ -212,12 +212,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="berat">Berat (kg):</label>
-                    <input type="number" id="berat" name="berat" placeholder="Masukkan berat laundry" required>
+                    <label for="berat">Weight (kg):</label>
+                    <input type="number" id="berat" name="berat" placeholder="Enter laundry weight" required>
                 </div>
 
                 <div class="form-group">
-                    <label>Metode Pembayaran:</label>
+                    <label>Payment Method:</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" id="cash" name="metodePembayaran" value="cash" required>
                         <label class="form-check-label" for="cash">Cash</label>
@@ -229,8 +229,8 @@
                 </div>
 
                 <div class="form-group d-flex">
-                    <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ route('manager.dashboard') }}'">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan Transaksi</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ route('manager.dashboard') }}'">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Transaction</button>
                 </div>
             </form>
         </div>

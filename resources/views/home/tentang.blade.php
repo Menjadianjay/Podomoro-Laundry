@@ -17,27 +17,27 @@
 
     <section class="image-header">
         <img src="img/about_header.png" alt="Podomoro Laundry" class="img-fluid w-100" style="float: left;" />
-        <!-- Tulisan berada di tengah dalam kotak transparan -->
+        <!-- Text is centered inside the transparent box -->
         <div class="centered-text">
-            <h1 class="larger-header"><b>Tentang Kami</b></h1> <!-- Header "Tentang Kami" di luar kotak transparan dengan ukuran besar -->
+            <h1 class="larger-header"><b>About Us</b></h1> <!-- Large "About Us" header outside the transparent box -->
 
         </div>
     </section>
 
     <div class="white-bg">
-        <!-- Tulisan di bagian bg white -->
+        <!-- Text in the white background section -->
         <div class="text-center">
         <div class="overlay-box">
                 <h1><b>PodoMoro Laundry!</b></h1>
-                <p><b>Harum, Rapi, Bersih</b></p>
-                <p> PodoMoro Laundry berdiri sejak 2023 di Yogyakarta,
-                    melayani bentuk jasa laundry / laundry satuan serta paket kiloan di kota Yogyakarta dan sekitarnya.
-                    Dengan tetap memperhatikan kualitas layanan pada pelanggan serta senantiasa bersinergi dengan lingkungan sekitar.
-                    Mewujudkan kreativitas dan ide jasa layanan yang berbasis pada teknologi komunikasi di era digital saat ini sehingga
-                    seluruh pengguna jasa dapat mengakses informasi layanan kami. Terutama pengunjung dan wisatawan ke Bali yang membutuhkan
-                    layanan laundry cepat. Bagaimana memaksimalkan waktu liburan atau rutinitas penting harian tanpa terganggu oleh pekerjaan
-                    tambahan di rumah. Bagi traveler, sangatlah penting mengunjungi situs-situs tujuan tanpa khawatir akan ketersediaan pakaian
-                    bersih selama dalam perjalanan sehingga liburan semakin berkesan dan menyenangkan.</p>
+                <p><b>Fresh, Neat, Clean</b></p>
+                <p> PodoMoro Laundry has operated in Yogyakarta since 2023,
+                    providing individual-item and per-kilogram laundry services in Yogyakarta and the surrounding area.
+                    We remain committed to service quality for our customers and to working in harmony with the local community.
+                    We turn creative service ideas into technology-based solutions in today’s digital era so
+                    every customer can access our service information. This is especially helpful for visitors and travelers to Bali who need
+                    fast laundry service. Make the most of your vacation or important daily routines without being interrupted by extra household chores.
+                    For travelers, it is important to visit their destinations without worrying about access to clean clothes,
+                    making their trip more memorable and enjoyable.</p>
             </div>
         </div>
     </div> 
@@ -51,5 +51,3 @@
 
 </body> 
 </html>
-
-

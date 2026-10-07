@@ -18,7 +18,7 @@ class CreatePresensisTable extends Migration
             $table->string('nama_pegawai');
             $table->string('kehadiran');
             $table->text('keterangan')->nullable();
-            $table->string('upload')->nullable(); // untuk file upload
+            $table->string('upload')->nullable(); // for uploaded files
             $table->timestamps();
         });
     }

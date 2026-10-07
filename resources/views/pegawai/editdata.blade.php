@@ -173,25 +173,25 @@
             @csrf
             @method('PUT')
             <div class="form-group">
-                <label for="tanggalMasuk">Tanggal Masuk:</label>
+                <label for="tanggalMasuk">Date Received:</label>
                 <input type="date" id="tanggalMasuk" name="tanggalMasuk" required value="{{ $transaction->tanggal_masuk }}">
             </div>
             <div class="form-group">
-                <label for="namaPelanggan">Nama Pelanggan:</label>
-                <input type="text" id="namaPelanggan" name="namaPelanggan" placeholder="Masukkan nama pelanggan" required value="{{ $transaction->pelanggan->nama }}">
+                <label for="namaPelanggan">Customer Name:</label>
+                <input type="text" id="namaPelanggan" name="namaPelanggan" placeholder="Enter customer name" required value="{{ $transaction->pelanggan->nama }}">
             </div>
             <div class="form-group">
-                <label for="noTelp">No. Telp:</label>
-                <input type="text" id="noTelp" name="noTelp" placeholder="Masukkan nomor telepon pelanggan" required value="{{ $transaction->pelanggan->no_telp }}">
+                <label for="noTelp">Phone No.:</label>
+                <input type="text" id="noTelp" name="noTelp" placeholder="Enter customer phone number" required value="{{ $transaction->pelanggan->no_telp }}">
             </div>
             <div class="form-group">
-                <label for="alamat">Alamat:</label>
-                <textarea id="alamat" name="alamat" placeholder="Masukkan alamat pelanggan" rows="3" required>{{ $transaction->pelanggan->alamat }}</textarea>
+                <label for="alamat">Address:</label>
+                <textarea id="alamat" name="alamat" placeholder="Enter customer address" rows="3" required>{{ $transaction->pelanggan->alamat }}</textarea>
             </div>
             <div class="form-group">
-                <label for="layanan">Layanan Laundry :</label>
+                <label for="layanan">Laundry Service:</label>
                 <select id="layanan" name="layanan" required>
-                    <option value="" disabled>Pilih layanan</option>
+                    <option value="" disabled>Select a service</option>
                     @foreach($laundries as $laundry)
                         <option value="{{ $laundry->jenis_layanan }} - {{ $laundry->durasi_layanan }}"
                             {{ $transaction->laundry->jenis_layanan . ' - ' . $transaction->laundry->durasi_layanan == $laundry->jenis_layanan . ' - ' . $laundry->durasi_layanan ? 'selected' : '' }}>
@@ -201,11 +201,11 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="berat">Berat (kg):</label>
-                <input type="number" id="berat" name="berat" placeholder="Masukkan berat laundry" required value="{{ $transaction->berat }}">
+                <label for="berat">Weight (kg):</label>
+                <input type="number" id="berat" name="berat" placeholder="Enter laundry weight" required value="{{ $transaction->berat }}">
             </div>
             <div class="form-group">
-                <label>Metode Pembayaran:</label>
+                <label>Payment Method:</label>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" id="cash" name="metodePembayaran" value="cash" required {{ $transaction->metode_pembayaran == 'cash' ? 'checked' : '' }}>
                     <label class="form-check-label" for="cash">Cash</label>
@@ -216,8 +216,8 @@
                 </div>
             </div>
             <div class="form-group d-flex">
-                <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ route('pegawai.viewdata') }}'">Batal</button>
-                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ route('pegawai.viewdata') }}'">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
             </div>
         </form>
     </div>

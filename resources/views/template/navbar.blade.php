@@ -13,16 +13,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Beranda</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/tentang">Tentang</a>
+                    <a class="nav-link" href="/tentang">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/layanan">Layanan</a>
+                    <a class="nav-link" href="/layanan">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="kontak">Kontak</a>
+                    <a class="nav-link" href="kontak">Contact</a>
                 </li>
             </ul>
         </div>

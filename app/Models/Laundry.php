@@ -10,15 +10,15 @@ class Laundry extends Model
     use HasFactory;
 
     protected $fillable = [
-        'jenis_laundry',      // Kiloan atau satuan
-        'jenis_layanan',      // Cuci setrika atau cuci lipat
-        'tarif_layanan',      // Tarif untuk layanan
-        'durasi_layanan',     // Express, 2 hari, atau 3 hari
-        'keterangan',         // Deskripsi tambahan
+        'jenis_laundry',      // By weight or by item
+        'jenis_layanan',      // Wash and iron or wash and fold
+        'tarif_layanan',      // Service rate
+        'durasi_layanan',     // Express, 2 days, or 3 days
+        'keterangan',         // Additional description
     ];
 
     /**
-     * Menggabungkan jenis layanan dan durasi layanan menjadi satu string.
+     * Combine the service type and turnaround time into one string.
      */
     public function getLayananAttribute()
     {
@@ -26,7 +26,7 @@ class Laundry extends Model
     }
 
     /**
-     * Membagi layanan gabungan menjadi jenis layanan dan durasi layanan.
+     * Split the combined service into a service type and turnaround time.
      * @param string $layanan
      */
     public function setLayananAttribute($layanan)

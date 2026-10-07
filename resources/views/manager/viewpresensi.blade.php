@@ -4,25 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Presensi Pegawai</title>
+    <title>Staff Attendance List</title>
 
-    <!-- Menambahkan link font dan icons -->
+    <!-- Add font and icon links -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <!-- Menyertakan CSS lokal -->
+    <!-- Include local CSS -->
     <link rel="stylesheet" href="{{ asset('css/da.css') }}">
 
     <style>
-        /* Reset margin dan padding untuk memastikan elemen fullscreen */
+        /* Reset margins and padding to ensure a fullscreen layout */
         html, body {
             margin: 0;
             padding: 0;
             height: 100%;
         }
 
-        /* Gaya dasar untuk body */
+        /* Basic body styles */
         body {
             background-image: url("{{ asset('img/dash.png') }}");
             background-size: cover;
@@ -31,7 +31,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh; /* Full viewport height */
-            font-family: 'Poppins', sans-serif; /* Menambahkan font Poppins */
+            font-family: 'Poppins', sans-serif; /* Add the Poppins font */
         }
 
        /* Container styling */
@@ -109,7 +109,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        /* Tombol */
+        /* Buttons */
         .btn {
             background-color: #5eb1e6;
             color: white;
@@ -127,7 +127,7 @@
             background-color: #007bff;
         }
 
-        /* Tombol dengan warna sekunder (merah) */
+        /* Secondary-colored button (red) */
         .btn-secondary {
             background-color: #f44336;
             color: white;
@@ -140,7 +140,7 @@
 
         .btn-actions {
             display: flex;
-            gap: 1px; /* Jarak antar tombol yang lebih kecil */
+            gap: 1px; /* Smaller spacing between buttons */
         }
 
         .alert {
@@ -155,7 +155,7 @@
             color: #0c5460;
         }
 
-        /* Flexbox untuk layout */
+        /* Flexbox layout */
         .d-flex {
             display: flex;
             justify-content: space-between;
@@ -192,15 +192,15 @@
             color: white;
         }
 
-        /* Media query untuk perangkat kecil (smartphone) */
+        /* Media query for small devices (smartphones) */
         @media (max-width: 768px) {
-            /* Container menjadi lebih kecil */
+            /* Make the container smaller */
             .container {
                 width: 90%;
                 padding: 10px;
             }
 
-            /* Tabel menjadi scrollable */
+            /* Make the table scrollable */
             .table-container {
                 overflow-x: auto;
             }
@@ -209,13 +209,13 @@
                 font-size: 0.8em;
             }
 
-            /* Ubah font ukuran lebih kecil */
+            /* Use a smaller font size */
             td, th {
                 padding: 8px;
                 font-size: 0.75em;
             }
 
-            /* Elemen tombol lebih rapat */
+            /* Tighten button spacing */
             .btn {
                 padding: 5px;
                 font-size: 0.75em;
@@ -227,7 +227,7 @@
                 font-size: 0.7em;
             }
 
-            /* Sidebar dan konten dashboard */
+            /* Sidebar and dashboard content */
             .dashboard-content {
                 padding: 0;
             }
@@ -237,7 +237,7 @@
             }
         }
 
-        /* Media query untuk perangkat sangat kecil (layar < 480px) */
+        /* Media query for very small devices (screen < 480px) */
         @media (max-width: 480px) {
             .container {
                 padding: 5px;
@@ -274,9 +274,9 @@
 
     <div class="dashboard-content">
         <div class="container mt-5">
-            <h2 class="text-center mb-4">Daftar Presensi Pegawai</h2>
+            <h2 class="text-center mb-4">Staff Attendance List</h2>
 
-            <!-- Menampilkan pesan sukses jika ada -->
+            <!-- Display a success message if present -->
             @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -289,12 +289,12 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nama Pegawai</th>
-                <th>Kehadiran</th>
-                <th>Keterangan</th>
-                <th>Surat Keterangan Sakit</th>
-                <th>Tanggal Presensi</th>
-                <th>Aksi</th>
+                <th>Staff Name</th>
+                <th>Attendance Status</th>
+                <th>Notes</th>
+                <th>Medical Certificate</th>
+                <th>Attendance Date</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -306,21 +306,21 @@
                 <td>{{ $presensi->keterangan ?? '-' }}</td>
                 <td>
                     @if ($presensi->upload)
-                        <a href="{{ route('presensi.file', $presensi->id) }}" target="_blank">Lihat File</a>
+                        <a href="{{ route('presensi.file', $presensi->id) }}" target="_blank">View File</a>
                     @else
-                        Tidak ada file
+                        No file
                     @endif
                 </td>
                 <td>{{ $presensi->created_at->format('d-m-Y H:i') }}</td>
                 <td class="btn-actions">
-                    <!-- Tombol Edit -->
+                    <!-- Edit button -->
                     <a href="{{ route('presensi.edit', $presensi->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
-                    <!-- Tombol Hapus -->
+                    <!-- Delete button -->
                     <form action="{{ route('presensi.destroy', $presensi->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-secondary btn-sm" style="background-color: #e53935; color: white;" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                        <button type="submit" class="btn btn-secondary btn-sm" style="background-color: #e53935; color: white;" onclick="return confirm('Are you sure you want to delete this data?')">Delete</button>
                     </form>
                 </td>
             </tr>
@@ -334,7 +334,7 @@
             </div>
             @else
             <div class="alert alert-info text-center">
-                Tidak ada data presensi yang tersedia.
+                No attendance data is available.
             </div>
             @endif
 

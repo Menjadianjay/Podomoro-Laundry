@@ -9,13 +9,13 @@ use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\LaundryController;
 
 
-// Untuk tampilan Home
+// Home page routes
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/tentang', [HomeController::class, 'tentang']);
 Route::get('/layanan', [HomeController::class, 'layanan']);
 Route::get('/kontak', [HomeController::class, 'kontak']);
 
-// Untuk Login
+// Login routes
 Route::middleware('guest')->group(function () {
     Route::get('admin/login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
@@ -28,8 +28,8 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 });
 
-//Pegawai
-// Untuk tampilan Pegawai
+// Staff
+// Staff page routes
 Route::get('/pegawai/dashboard', [PegawaiController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('pegawai.dashboard');
 Route::get('/pegawai/inputdata', [PegawaiController::class, 'inputdata'])->middleware(['auth', 'verified']);
 Route::post('/pegawai/inputdata', [PegawaiController::class, 'store'])->middleware(['auth', 'verified'])->name('pegawai.store');
@@ -38,22 +38,22 @@ Route::get('pegawai/editdata/{id}', [PegawaiController::class, 'editdata'])->mid
 Route::put('pegawai/update/{id}', [PegawaiController::class, 'update'])->middleware(['auth', 'verified'])->name('pegawai.update');
 Route::delete('pegawai/delete/{id}', [PegawaiController::class, 'delete'])->middleware(['auth', 'verified'])->name('pegawai.delete');
 
-// Untuk Presensi Pegawai
-// Menampilkan halaman daftar presensi
+// Staff attendance
+// Display the attendance list
 Route::get('/pegawai/presensi', [PresensiController::class, 'presensi'])->middleware(['auth', 'verified'])->name('pegawai.presensi');
 
-// Menampilkan halaman form tambah presensi
+// Display the attendance entry form
 Route::get('/presensi/create', [PresensiController::class, 'presensi'])->middleware(['auth', 'verified'])->name('presensi.create');
 
-// Menyimpan data presensi
+// Save attendance data
 Route::post('/presensi', [PresensiController::class, 'store'])->middleware(['auth', 'verified'])->name('presensi.store');
 
-// Menampilkan halaman daftar presensi di dashboard pegawai
+// Display the attendance list on the staff dashboard
 Route::get('/pegawai/viewpresensi', [PresensiController::class, 'viewpresensi'])->middleware(['auth', 'verified'])->name('pegawai.viewpresensi');
 
-// Route untuk melihat file yang diupload
+// Route for viewing the uploaded file
 Route::get('/presensi/{id}/file', [PresensiController::class, 'showFile'])->name('presensi.file');
-//membuat waktu batasan presensi pegawai
+// Set the staff attendance time limit
 //Route::post('pegawai/presensi', [PresensiController::class, 'waktupresensi'])->middleware(['auth', 'verified'])->name('pegawai.presensi');
 
 // Manager
@@ -64,14 +64,14 @@ Route::get('manager/viewdata', [ManagerController::class, 'viewdata'])->middlewa
 Route::get('manager/editdata/{id}', [ManagerController::class, 'editdata'])->middleware(['auth', 'verified'])->name('manager.editdata');
 Route::put('manager/update/{id}', [ManagerController::class, 'update'])->middleware(['auth', 'verified'])->name('manager.update');
 Route::delete('manager/delete/{id}', [ManagerController::class, 'delete'])->middleware(['auth', 'verified'])->name('manager.delete');
-// Menampilkan halaman daftar presensi di dashboard Manager
-// Menampilkan halaman daftar presensi
+// Display the attendance list on the manager dashboard
+// Display the attendance list
 Route::get('/manager/presensi', [PresensiController::class, 'presensimanager'])->middleware(['auth', 'verified'])->name('manager.presensi');
 
-// Menampilkan halaman form tambah presensi
+// Display the attendance entry form
 Route::get('/presensi/create', [PresensiController::class, 'presensi'])->middleware(['auth', 'verified'])->name('presensi.create');
 
-// Menyimpan data presensi
+// Save attendance data
 Route::post('/presensi', [PresensiController::class, 'store'])->middleware(['auth', 'verified'])->name('presensi.store');
 
 Route::get('manager/viewpresensi', [PresensiController::class, 'viewpresensiManager'])->middleware(['auth', 'verified'])->name('manager.viewpresensi');

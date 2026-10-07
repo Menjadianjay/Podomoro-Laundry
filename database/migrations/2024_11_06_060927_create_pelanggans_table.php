@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->text('alamat');
-            $table->string('no_telp', 15); // Panjang disesuaikan
+            $table->string('no_telp', 15); // Adjusted length
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Layanan Laundry</title>
+    <title>Enter Laundry Service</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -234,50 +234,50 @@
     @include('template.sidebarmanager')
     <div class="dashboard-content">
         <div class="container">
-            <h2>Input Jenis dan Tarif Layanan Laundry</h2>
+            <h2>Enter Laundry Service Type and Rate</h2>
             <form action="{{ route('manager.storelayanan') }}" method="POST">
                 @csrf
 
                 <div class="form-group">
-                    <label>Jenis Laundry:</label>
+                    <label>Laundry Type:</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" id="kiloan" name="jenis_laundry" value="kiloan" required>
-                        <label class="form-check-label" for="kiloan">Kiloan</label>
+                        <label class="form-check-label" for="kiloan">By Weight</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" id="satuan" name="jenis_laundry" value="satuan" required>
-                        <label class="form-check-label" for="satuan">Satuan</label>
+                        <label class="form-check-label" for="satuan">By Item</label>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="jenis_layanan">Jenis Layanan:</label>
+                    <label for="jenis_layanan">Service Type:</label>
                     <input type="text" id="jenis_layanan" name="jenis_layanan" placeholder="Masukkan jenis layanan (contoh: Cuci Kering)" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="durasi_layanan">Durasi Layanan:</label>
+                    <label for="durasi_layanan">Turnaround Time:</label>
                     <select id="durasi_layanan" name="durasi_layanan" required>
-                        <option value="" disabled selected>Pilih Durasi Laundry</option>
+                        <option value="" disabled selected>Select Turnaround Time</option>
                         <option value="Express">Express</option>
-                        <option value="Kilat">Kilat</option>
+                        <option value="Kilat">Fast</option>
                         <option value="Reguler">Reguler</option>
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="tarif_layanan">Tarif Layanan:</label>
+                    <label for="tarif_layanan">Service Rate:</label>
                     <input type="number" id="tarif_layanan" name="tarif_layanan" placeholder="Masukkan Tarif layanan (contoh: 5000)" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="keterangan">Keterangan:</label>
+                    <label for="keterangan">Notes:</label>
                     <textarea id="keterangan" name="keterangan" placeholder="Masukkan keterangan layanan" rows="4"></textarea>
                 </div>
 
                 <div class="form-group d-flex">
-                    <button type="button" class="btn btn-batal" onclick="window.location.href='{{ route('manager.dashboard') }}'">Batal</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="button" class="btn btn-batal" onclick="window.location.href='{{ route('manager.dashboard') }}'">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </div>
             </form>
         </div>
