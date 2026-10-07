@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Transaksi Laundry</title>
+    <title>View Laundry Transactions</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -226,46 +226,46 @@
     @include('template.sidebarmanager')
     <div class="dashboard-content">
         <div class="container">
-            <h2>View Transaksi Laundry</h2>
+            <h2>View Laundry Transactions</h2>
 
             @if ($transactions->count() > 0)
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Tanggal Masuk</th>
-                        <th>Nama Pelanggan</th>
-                        <th>No Telp</th>
-                        <th>Alamat</th>
-                        <th>Jenis Layanan</th>
-                        <th>Jenis Laundry</th>
-                        <th>Durasi Layanan</th>
-                        <th>Berat (kg)</th>
-                        <th>Metode Pembayaran</th>
-                        <th>Total Harga</th>
-                        <th>Aksi</th>
+                        <th>Date Received</th>
+                        <th>Customer Name</th>
+                        <th>Phone No.</th>
+                        <th>Address</th>
+                        <th>Service Type</th>
+                        <th>Laundry Type</th>
+                        <th>Turnaround Time</th>
+                        <th>Weight (kg)</th>
+                        <th>Payment Method</th>
+                        <th>Total Price</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($transactions as $transaction)
                     <tr>
                         <td data-label="No">{{ $loop->iteration }}</td>
-                        <td data-label="Tanggal Masuk">{{ $transaction->tanggal_masuk }}</td>
-                        <td data-label="Nama Pelanggan">{{ $transaction->pelanggan->nama }}</td>
-                        <td data-label="No Telp">{{ $transaction->pelanggan->no_telp }}</td>
-                        <td data-label="Alamat">{{ $transaction->pelanggan->alamat }}</td>
-                        <td data-label="Jenis Layanan">{{ $transaction->laundry->jenis_layanan }}</td>
-                        <td data-label="Jenis Laundry">{{ $transaction->laundry->jenis_laundry }}</td>
-                        <td data-label="Durasi Layanan">{{ $transaction->laundry->durasi_layanan }}</td>
-                        <td data-label="Berat">{{ $transaction->berat }}</td>
-                        <td data-label="Metode Pembayaran">{{ $transaction->metode_pembayaran }}</td>
-                        <td data-label="Total Harga">Rp {{ number_format($transaction->total_harga, 2, ',', '.') }}</td>
-                        <td data-label="Aksi" class="btn-actions">
+                        <td data-label="Date Received">{{ $transaction->tanggal_masuk }}</td>
+                        <td data-label="Customer Name">{{ $transaction->pelanggan->nama }}</td>
+                        <td data-label="Phone No.">{{ $transaction->pelanggan->no_telp }}</td>
+                        <td data-label="Address">{{ $transaction->pelanggan->alamat }}</td>
+                        <td data-label="Service Type">{{ $transaction->laundry->jenis_layanan }}</td>
+                        <td data-label="Laundry Type">{{ $transaction->laundry->jenis_laundry }}</td>
+                        <td data-label="Turnaround Time">{{ $transaction->laundry->durasi_layanan }}</td>
+                        <td data-label="Weight">{{ $transaction->berat }}</td>
+                        <td data-label="Payment Method">{{ $transaction->metode_pembayaran }}</td>
+                        <td data-label="Total Price">Rp {{ number_format($transaction->total_harga, 2, ',', '.') }}</td>
+                        <td data-label="Actions" class="btn-actions">
                             <a href="{{ route('manager.editdata', ['id' => $transaction->id]) }}" class="btn btn-warning btn-sm">Edit</a>
                             <form action="{{ route('manager.delete', ['id' => $transaction->id]) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus transaksi ini?')">Hapus</button>
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this transaction?')">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -279,7 +279,7 @@
             </div>
             @else
             <div class="alert alert-info text-center">
-                Tidak ada data transaksi yang tersedia.
+                No transaction data is available.
             </div>
             @endif
             <div class="d-flex justify-content-between align-items-center">

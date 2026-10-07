@@ -263,18 +263,18 @@
     @include('template.sidebarmanager')
     <div class="dashboard-content">
         <div class="container">
-            <h2>Daftar Jenis dan Tarif Layanan Laundry</h2>
+            <h2>Laundry Service Types and Rates</h2>
 
             <!-- Tabel daftar layanan -->
             <table>
                 <thead>
                     <tr>
-                        <th>Jenis Layanan</th>
-                        <th>Nama Layanan</th>
-                        <th>Durasi Layanan</th>
-                        <th>Tarif Layanan (Rp)</th>
-                        <th>Keterangan</th> <!-- Tambahkan kolom Keterangan -->
-                        <th>Aksi</th>
+                        <th>Service Type</th>
+                        <th>Service Name</th>
+                        <th>Turnaround Time</th>
+                        <th>Service Rate (IDR)</th>
+                        <th>Notes</th> <!-- Add the Notes column -->
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -290,7 +290,7 @@
                             <form action="{{ route('manager.deletelayanan', $laundry->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus layanan ini?')">Hapus</button>
+                                <button type="submit" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure you want to delete this service?')">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -309,4 +309,3 @@
     </div>
 </body>
 </html>
-

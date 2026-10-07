@@ -20,7 +20,7 @@
   
   <section class="contact-section">
     <div class="contact-bg" >
-      <h3>Mari Hubungi Kami</h3>
+      <h3>Contact Us</h3>
       <h2>Podomoro Laundry</h2>
       <div class="line">
         <div></div>
@@ -28,9 +28,9 @@
         <div></div>
       </div>
       <p class="text">
-        Podomoro sangat menghargai masukan anda terkait pelayanan kami, maka
-        anda boleh menyampaikan masukan anda melalui kontak kami dibawah ini.
-        Salam Hangat Pegawai Podomoro
+        Podomoro greatly values your feedback about our service, so
+        please share it through the contact details below.
+        Warm regards, the Podomoro team
       </p>
     </div>
 
@@ -38,32 +38,31 @@
       <div class="contact-info">
         <div>
           <span><i class="fas fa-mobile-alt"></i></span>
-          <span>Nomor Telepon</span>
+          <span>Phone Number</span>
           <span class="text">0821-4732-9010</span>
         </div>
         <div>
           <span><i class="fas fa-envelope-open"></i></span>
-          <span>Surat Elektronik</span>
+          <span>Email</span>
           <span class="text">PodomoroLaundry@gmail.com</span>
         </div>
         <div>
           <span><i class="fas fa-map-marker-alt"></i></span>
-          <span>Alamat</span>
+          <span>Address</span>
           <span class="text">Jl. Sengkan No.22, Joho, Condongcatur, Kec. Depok, Kabupaten
             Sleman, Daerah Istimewa Yogyakarta</span>
         </div>
         <div>
           <span><i class="fas fa-clock"></i></span>
-          <span>Jadwal Buka</span>
-          <span class="text">Senin - Jumat (9:00 - 17:00 )</span>
+          <span>Opening Hours</span>
+          <span class="text">Monday - Friday (9:00 AM - 5:00 PM)</span>
         </div>
       </div>
 
       <div class="contact-quotes">
         <div class="quotes">
-          Cucian istri memang bersih dan wangi,
-          tetapi Anda akan menjadi suami yang berbudi jika meringankan beban istri dengan
-          laundry di sini.
+          Your laundry will be clean and fragrant,
+          and you can make life easier at home by leaving the laundry to us.
         </div>
 
         <div>
@@ -78,7 +77,7 @@
     </div>
 
     <div class="contact-footer">
-      <h3>Hubungi Kami</h3>
+      <h3>Contact Us</h3>
       <div class="social-links">
         <a href="https://www.facebook.com/groups/270109493113416" class="fab fa-facebook-f"></a>
         <a href="https://www.instagram.com/agnesalfaaa?igsh=dTJwODRqczZ4dzV4" class="fab fa-instagram"></a>

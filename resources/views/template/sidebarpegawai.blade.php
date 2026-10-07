@@ -6,12 +6,12 @@
     
     <br><br>
     <a href="dashboard"><i></i>Dashboard</a>
-    <a href="inputdata"><i class="fas fa-plus"></i> Input transaksi</a>
-    <a href="viewdata"><i class="fas fa-file-alt"></i> Lihat Data Transaksi</a>
-    <a href="presensi"><i class="fas fa-edit"></i>Presensi Pegawai</a>
-    <a href="viewpresensi"><i class="fas fa-calendar-alt"></i> Lihat Data Presensi</a>
-    {{-- <a href=""><i class="fas fa-plus"></i> Tambah Layanan</a>
-    <a href=""><i class="fas fa-eye"></i> Lihat Tarif Layanan</a> --}}
+    <a href="inputdata"><i class="fas fa-plus"></i> Enter Transaction</a>
+    <a href="viewdata"><i class="fas fa-file-alt"></i> View Transactions</a>
+    <a href="presensi"><i class="fas fa-edit"></i>Staff Attendance</a>
+    <a href="viewpresensi"><i class="fas fa-calendar-alt"></i> View Attendance</a>
+    {{-- <a href=""><i class="fas fa-plus"></i> Add Service</a>
+    <a href=""><i class="fas fa-eye"></i> View Service Rates</a> --}}
     <form method="POST" action="{{ route('logout') }}" id="logout-form">
         @csrf
         <a href="#" onclick="document.getElementById('logout-form').submit();">

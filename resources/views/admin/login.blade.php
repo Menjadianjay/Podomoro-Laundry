@@ -80,7 +80,7 @@
       <button type="submit" class="btn">Login</button>
 
       <div class="register-link">
-        <p>Belum Punya Akun ? Hubungi Manager</p>
+        <p>Don't have an account? Contact the manager.</p>
         <p>2024 Laundry PodoMoro. All rights reserved.</p>
       </div>
     </form>

@@ -20,12 +20,12 @@ class LaundryController extends Controller
             'jenis_layanan' => 'required|string',
             'tarif_layanan' => 'required|numeric',
             'durasi_layanan' => 'required|string',
-            'keterangan' => 'nullable|string', // Tambahkan validasi keterangan
+            'keterangan' => 'nullable|string', // Add notes validation
         ]);
 
         Laundry::create($request->all());
 
-        return redirect()->route('manager.dashboard')->with('success', 'Layanan laundry berhasil ditambahkan.');
+        return redirect()->route('manager.dashboard')->with('success', 'Laundry service added successfully.');
     }
 
     public function viewlayanan()
@@ -53,7 +53,7 @@ class LaundryController extends Controller
         $laundry = Laundry::findOrFail($id);
         $laundry->update($request->all());
 
-        return redirect()->route('manager.viewlayanan')->with('success', 'Layanan laundry berhasil diperbarui.');
+        return redirect()->route('manager.viewlayanan')->with('success', 'Laundry service updated successfully.');
     }
 
     public function destroy($id)
@@ -61,7 +61,7 @@ class LaundryController extends Controller
         $laundry = Laundry::findOrFail($id);
         $laundry->delete();
 
-        return redirect()->route('manager.viewlayanan')->with('success', 'Layanan laundry berhasil dihapus.');
+        return redirect()->route('manager.viewlayanan')->with('success', 'Laundry service deleted successfully.');
     }
 
     public function viewlandinglayanan()

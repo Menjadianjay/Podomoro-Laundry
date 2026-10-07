@@ -29,9 +29,9 @@ class PegawaiController extends Controller
 
     public function inputdata()
     {
-        // Ambil data jenis_layanan, nama_layanan, dan durasi_layanan dari tabel laundries
+        // Get service type, service name, and turnaround time from the laundries table
         $laundries = Laundry::all();
-        return view('pegawai.inputdata', compact('laundries')); // return view dan data laundries ke view
+        return view('pegawai.inputdata', compact('laundries')); // Return the view and laundry data
     }
 
     public function store(Request $request)
@@ -46,10 +46,10 @@ class PegawaiController extends Controller
             'metodePembayaran' => 'required|string',
         ]);
 
-        // Pecah layanan menjadi jenis layanan dan durasi layanan
+        // Split the service into service type and turnaround time
         [$jenisLayanan, $durasiLayanan] = explode(' - ', $request->layanan);
 
-        // Buat atau ambil pelanggan berdasarkan nama
+        // Create or retrieve the customer by name
         $pelanggan = Pelanggan::updateOrCreate(
             ['nama' => $request->namaPelanggan],
             [
@@ -58,7 +58,7 @@ class PegawaiController extends Controller
             ]
         );
 
-        // Ambil laundry yang sesuai atau buat entri baru
+        // Retrieve the matching laundry service or create a new entry
         $laundry = Laundry::updateOrCreate(
             [
                 'jenis_layanan' => $jenisLayanan,
@@ -66,10 +66,10 @@ class PegawaiController extends Controller
             ]
         );
 
-        // Hitung total harga
+        // Calculate the total price
         $totalHarga = $laundry->tarif_layanan * $request->berat;
 
-        // Simpan transaksi
+        // Save the transaction
         Transaction::create([
             'tanggal_masuk' => $request->tanggalMasuk,
             'pelanggan_id' => $pelanggan->id,
@@ -79,7 +79,7 @@ class PegawaiController extends Controller
             'total_harga' => $totalHarga,
         ]);
 
-        return redirect()->route('pegawai.dashboard')->with('success', 'Transaksi berhasil disimpan.');
+        return redirect()->route('pegawai.dashboard')->with('success', 'Transaction saved successfully.');
     }
 
     public function viewData()
@@ -109,10 +109,10 @@ class PegawaiController extends Controller
 
         $transaction = Transaction::findOrFail($id);
 
-        // Pecah layanan menjadi jenis layanan dan durasi layanan
+        // Split the service into service type and turnaround time
         [$jenisLayanan, $durasiLayanan] = explode(' - ', $request->layanan);
 
-        // Update pelanggan
+        // Update the customer
         $pelanggan = Pelanggan::updateOrCreate(
             ['nama' => $request->namaPelanggan],
             [
@@ -121,15 +121,15 @@ class PegawaiController extends Controller
             ]
         );
 
-        // Update laundry
+        // Update the laundry service
         $laundry = Laundry::where('jenis_layanan', $jenisLayanan)
             ->where('durasi_layanan', $durasiLayanan)
             ->firstOrFail();
 
-        // Hitung ulang total harga
+        // Recalculate the total price
         $totalHarga = $laundry->tarif_layanan * $request->berat;
 
-        // Update transaksi
+        // Update the transaction
         $transaction->update([
             'tanggal_masuk' => $request->tanggalMasuk,
             'pelanggan_id' => $pelanggan->id,
@@ -139,7 +139,7 @@ class PegawaiController extends Controller
             'total_harga' => $totalHarga,
         ]);
 
-        return redirect()->route('pegawai.viewdata')->with('success', 'Transaksi berhasil diperbarui');
+        return redirect()->route('pegawai.viewdata')->with('success', 'Transaction updated successfully.');
     }
 
 

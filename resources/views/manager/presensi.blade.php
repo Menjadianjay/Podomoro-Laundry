@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input Presensi Pegawai</title>
+    <title>Enter Staff Attendance</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -80,7 +80,7 @@
             justify-content: space-between;
             display: flex;
         }
-        /* Untuk pesan error yang berada di atas tengah halaman */
+                /* Error message positioned at the top center of the page */
         .alert {
             position: absolute;
             top: 10px;
@@ -112,7 +112,7 @@
             color: white;
         }
 
-        /* Responsif untuk ukuran layar kecil */
+                /* Responsive styles for small screens */
         @media (max-width: 768px) {
             .container {
                 width: 90%;
@@ -129,7 +129,7 @@
 
 <body>
     @include('template.sidebarmanager')
-    <!-- Pesan alert di tengah atas -->
+            <!-- Alert message at the top center -->
         @if (session('error'))
             <div class="alert alert-danger">
                 {{ session('error') }}
@@ -139,10 +139,10 @@
         <form action="{{ route('presensi.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="container">
-                <h2>Input Presensi Pegawai</h2>
+                <h2>Enter Staff Attendance</h2>
 
                 <div class="form-group">
-                    <label for="nama">Nama Pegawai</label>
+                    <label for="nama">Staff Name</label>
                     <select id="nama" name="nama">
                         <option value="Ferdy">Ferdy</option>
                         <option value="Mado">Mado</option>
@@ -152,28 +152,28 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="kehadiran">Kehadiran</label>
+                    <label for="kehadiran">Attendance Status</label>
                     <select id="kehadiran" name="kehadiran">
-                        <option value="Hadir">Hadir</option>
-                        <option value="Sakit">Sakit</option>
+                        <option value="Hadir">Present</option>
+                        <option value="Sakit">Sick</option>
                         <option value="Absent">Absent</option>
-                        <option value="Ijin">Ijin</option>
+                        <option value="Ijin">Permission</option>
                     </select>
                 </div>
 
                 <div class="form-group" id="keterangan-group" style="display: none;">
-                    <label for="keterangan">Keterangan</label>
-                    <textarea id="keterangan" name="keterangan" rows="4" class="form-control" placeholder="Masukkan keterangan"></textarea>
+                    <label for="keterangan">Notes</label>
+                    <textarea id="keterangan" name="keterangan" rows="4" class="form-control" placeholder="Enter notes"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="upload">Upload Surat Keterangan Sakit</label>
+                    <label for="upload">Upload Medical Certificate</label>
                     <input type="file" id="upload" name="upload">
                 </div>
 
                 <div class="form-group d-flex">
                     <a href="{{ route('manager.dashboard') }}" class="btn btn-secondary">Back</a>
-                    <button type="submit" class="btn btn-success">Simpan</button>
+                    <button type="submit" class="btn btn-success">Save</button>
                 </div>
             </div>
         </form>

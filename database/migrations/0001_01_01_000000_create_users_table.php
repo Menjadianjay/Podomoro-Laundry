@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('no_telp')->nullable(); // Menambahkan kolom no_telp
-            $table->string('alamat')->nullable(); // Menambahkan kolom alamat
+        $table->string('no_telp')->nullable(); // Add the phone number column
+        $table->string('alamat')->nullable(); // Add the address column
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -40,7 +40,7 @@ return new class extends Migration
             $table->integer('last_activity')->index();
         });
 
-        // Menambahkan akun pegawai beserta no_telp dan alamat
+        // Add a staff account with a phone number and address
         DB::table('users')->insert([
             [
                 'name' => 'Ferdy',
@@ -80,7 +80,7 @@ return new class extends Migration
             ]
         ]);
 
-        // Menambahkan akun manager
+        // Add a manager account
         DB::table('users')->insert([
             'name' => 'manager',
             'email' => 'manager@gmail.com',

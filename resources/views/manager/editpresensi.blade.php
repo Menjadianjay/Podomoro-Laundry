@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Presensi Pegawai</title>
+    <title>Edit Staff Attendance</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -94,10 +94,10 @@
         @csrf
         @method('PUT')
         <div class="container">
-            <h2>Edit Presensi Pegawai</h2>
+            <h2>Edit Staff Attendance</h2>
 
             <div class="form-group">
-                <label for="nama">Nama Pegawai</label>
+                <label for="nama">Staff Name</label>
                 <select id="nama" name="nama">
                     <option value="Ferdy" {{ $presensi->nama_pegawai == 'Ferdy' ? 'selected' : '' }}>Ferdy</option>
                     <option value="Mado" {{ $presensi->nama_pegawai == 'Mado' ? 'selected' : '' }}>Mado</option>
@@ -107,32 +107,32 @@
             </div>
 
             <div class="form-group">
-                <label for="kehadiran">Kehadiran</label>
+                <label for="kehadiran">Attendance Status</label>
                 <select id="kehadiran" name="kehadiran">
-                    <option value="Hadir" {{ $presensi->kehadiran == 'Hadir' ? 'selected' : '' }}>Hadir</option>
-                    <option value="Sakit" {{ $presensi->kehadiran == 'Sakit' ? 'selected' : '' }}>Sakit</option>
+                    <option value="Hadir" {{ $presensi->kehadiran == 'Hadir' ? 'selected' : '' }}>Present</option>
+                    <option value="Sakit" {{ $presensi->kehadiran == 'Sakit' ? 'selected' : '' }}>Sick</option>
                     <option value="Absent" {{ $presensi->kehadiran == 'Absent' ? 'selected' : '' }}>Absent</option>
-                    <option value="Ijin" {{ $presensi->kehadiran == 'Ijin' ? 'selected' : '' }}>Ijin</option>
+                    <option value="Ijin" {{ $presensi->kehadiran == 'Ijin' ? 'selected' : '' }}>Permission</option>
                 </select>
             </div>
 
             <div class="form-group" id="keterangan-group" style="display: none;">
-                <label for="keterangan">Keterangan</label>
-                <textarea id="keterangan" name="keterangan" rows="4" class="form-control" placeholder="Masukkan keterangan">{{ $presensi->keterangan }}</textarea>
+                <label for="keterangan">Notes</label>
+                <textarea id="keterangan" name="keterangan" rows="4" class="form-control" placeholder="Enter notes">{{ $presensi->keterangan }}</textarea>
             </div>
 
             <div class="form-group">
-                <label for="upload">Upload Surat Keterangan Sakit</label>
+                <label for="upload">Upload Medical Certificate</label>
                 <input type="file" id="upload" name="upload">
 
                 @if($presensi->upload)
-                    <p>File saat ini: <a href="{{ route('presensi.file', $presensi->id) }}" target="_blank">Lihat File</a></p>
+                    <p>Current file: <a href="{{ route('presensi.file', $presensi->id) }}" target="_blank">View File</a></p>
                 @endif
             </div>
 
             <div class="form-group d-flex">
                 <a href="{{ route('manager.viewpresensi') }}" class="btn btn-secondary">Back</a>
-                <button type="submit" class="btn btn-success">Simpan</button>
+                <button type="submit" class="btn btn-success">Save</button>
             </div>
         </div>
     </form>

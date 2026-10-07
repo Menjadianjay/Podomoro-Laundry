@@ -122,24 +122,24 @@
             <div class="dashboard-card">
                 <h3>Total Transaksi</h3>
                 <div class="value">{{ $transactionCount }}</div>
-                <p>Jumlah Transaksi Saat Ini</p>
+                <p>Current Transaction Count</p>
             </div>
 
             <div class="dashboard-card">
-                <h3>Total Pendapatan</h3>
+                <h3>Total Revenue</h3>
                 <div class="value">Rp {{ number_format($totalIncome, 0, ',', '.') }}</div>
-                <p>Total Pendapatan Laundry</p>
+                <p>Total Laundry Revenue</p>
             </div>
 
             <div class="dashboard-card">
-                <h3>Transaksi Terakhir</h3>
+                <h3>Latest Transaction</h3>
                 @if($transactions->count() > 0)
                     @php
                         $latestTransaction = $transactions->last();
                     @endphp
                     <div class="value">{{ $latestTransaction->tanggal_masuk }}</div>
                 @else
-                    <p>Tidak ada transaksi</p>
+                    <p>No transactions</p>
                 @endif
             </div>
         </div>
@@ -151,10 +151,10 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Tanggal</th>
-                            <th>Nama Pelanggan</th>
-                            <th>Layanan</th>
-                            <th>Total Harga</th>
+                            <th>Date</th>
+                            <th>Customer Name</th>
+                            <th>Service</th>
+                            <th>Total Price</th>
                         </tr>
                     </thead>
                     <tbody>

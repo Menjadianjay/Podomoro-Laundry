@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layanan Laundry</title>
+    <title>Laundry Services</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style_layanan.css">
@@ -17,13 +17,13 @@
     <section class="image-header">
         <img src="img/layanan_header.png" alt="Podomoro Laundry" class="img-fluid w-100" />
         <div class="text">
-            <p><b>Layanan Kami</b></p>
-            <!-- <p><b>Harum, Rapi, Bersih</b></p> -->
+            <p><b>Our Services</b></p>
+            <!-- <p><b>Fresh, Neat, Clean</b></p> -->
         </div>
     </section>
 
     <section class="container my-5">
-        <h3 style="text-align: center;">Layanan Podomoro Laundry</h3>
+        <h3 style="text-align: center;">Podomoro Laundry Services</h3>
         <br>
         <div class="row">
             @foreach ($laundries as $laundry)
@@ -32,8 +32,8 @@
                     <h3 class="card-title text-primary">{{$laundry->jenis_laundry}}</h3>
                     <h4 class="card-title">{{$laundry->jenis_layanan}} - {{$laundry->durasi_layanan}}</h4>
                     <p class="card-text">{{$laundry->keterangan}}</p>
-                    <p class="card-info"><b>Harga {{$laundry->tarif_layanan}}-/kg</b></p>
-                    <a href="http://wa.me/6281385613704" class="btn btn-primary">Pesan sekarang</a>
+                    <p class="card-info"><b>Price: {{$laundry->tarif_layanan}}/kg</b></p>
+                    <a href="http://wa.me/6281385613704" class="btn btn-primary">Order now</a>
                 </div>
             </div>
             @endforeach
